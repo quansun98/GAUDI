@@ -38,7 +38,7 @@ To reduce computational burden, we suggest keeping only variants with GWAS p-val
 2. Combine HDS (or GT) from VCFs with local ancestry information
 
 The script `py_vcf_to_la.py` extracts haplotype dosages (HDS) or genotypes (GT) from VCFs to incorporate local ancestry information. 
-Note that VCFs need to be block-zipped (bgzip) and have index (.tbi file).
+Note that VCFs need to be block-zipped (bgzip) with index (.tbi file) provided.
 Local ancestry inferred by RFMix is required. The below codes provide an example to run (by chunk to require less memory):
 
 		while read chunk; do
@@ -51,11 +51,14 @@ Local ancestry inferred by RFMix is required. The below codes provide an example
 				--la-dosage-threshold 5 \
 				--chr 22 --pos-start $start_pos --pos-stop $end_pos \
 				--out data/test_out_chr22_chunk${chunk}
-		done < <( awk -v chr=$chr '$1==chr { print $2 }' data/chunk_list
+		done < <( awk -v chr=$chr '$1==chr { print $2 }' data/chunk_list)
 
 Note that the `--la-dosage-threshold` flag is created to filter variants. At least one ancestry group must have k individuals with the minor allele.
 For example, for a specific variant, if AFR-MAC = 50, EUR-MAC = 1, this variant will be kept using `--la-dosage-threshold 10`. 
-The above example uses only 1 because of the small sample size in the toy dataset. We used 10 in our real data analysis.
+The above example uses only 5 because of the small sample size in the toy dataset. We used 10 in our real data analysis.
+
+Computational time is approximately linear to number of variants and individuals. 
+In our real data analysis, with ~6000 samples, the longest chromosome (chr2) takes about 5 hours (no parallel between chunks).
 
 3. Combine files created in the last step
 
@@ -99,6 +102,9 @@ For example, `--gwas data/GWAS_chr#_sim.regenie`.
 (3) GAUDI will automatically remove highly correlated variants (LD > 0.95) in training samples.
 LD pruning or clumping could be performed before training models, but is not required.
 
+(4) Computational time will depend on the number of samples and variants.
+In our real data analysis with ~6000 samples and ~300k input variants, it takes about 12 hours to finish.
+
 ## Instructions on model testing (applying GAUDI model)
 
 1. Combine HDS (or GT) from VCFs with local ancestry information
@@ -120,6 +126,9 @@ Example code to run:
 
 Note that this is just for code illustration purpose.
 Please do not fit PRS on the same samples that were used in model training.
+
+The computation time for GAUDI model applying is very short.
+Expected to finish in minutes.
 
 ## More information on GAUDI model output
 
