@@ -224,21 +224,27 @@ la_matrix <- t(la_matrix)
 pheno_string <- opt$`pheno-name`
 
 pheno <- read_tsv(opt$pheno) %>%
-  select(c(FID = opt$`pheno-fid`, all_of(pheno_string))) %>% 
-  mutate(FID = as.character(FID)) %>%
-  inner_join(tibble(FID = rownames(la_matrix)), .) %>% 
+  select(c(IID = opt$`pheno-iid`, all_of(pheno_string))) %>% 
+  mutate(IID = as.character(IID)) %>%
+  inner_join(tibble(IID = rownames(la_matrix)), .) %>% 
   filter(complete.cases(.))
 
 #Read in all IDs from training data
-training_ids <- read_tsv(opt$train) %>% pull(IID)
+
+if(!is.null(opt$train)){
+	message("Only user-specified trainign IDs will be used for model training")
+	training_ids <- read_tsv(opt$train) %>% pull(IID)
+}else{
+	training_ids <- pheno %>% pull(IID)
+}
 
 
 #Subset pheno on training ids
 # pheno_fold_train <- 
-pheno_train <- pheno %>% filter(FID %in% training_ids) 
+pheno_train <- pheno %>% filter(IID %in% training_ids) 
 
-pheno_train_ids <- pheno_train %>% pull(FID)
-pheno_train_m <- pheno_train %>% pull(-FID) %>% as.matrix()
+pheno_train_ids <- pheno_train %>% pull(IID)
+pheno_train_m <- pheno_train %>% pull(-IID) %>% as.matrix()
 
 
 #Initialize p-grid.
@@ -315,7 +321,6 @@ for(i in 1:length(p_list)){
   }
   
 }
-
 
 best_index <- which(r2_vec == max(r2_vec, na.rm = T))
 best_fit <- p_fits[[best_index]]

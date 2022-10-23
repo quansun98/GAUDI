@@ -4,6 +4,8 @@ library(genlasso)
 library(optparse)
 
 parser <- OptionParser()
+parser <- add_option(parser, opt_str = c("--gaudi-path"),
+		     help = "GAUDI path, where cv_fused_lasso.R is located")
 parser <- add_option(parser, opt_str = c("--model"), 
 		     help = "GAUDI model, *.best_list.RDS")
 parser <- add_option(parser, opt_str = c("--target-la-dir"),
@@ -12,6 +14,7 @@ parser <- add_option(parser, opt_str = c("--out"),
 		     help = "Output file name")
 opt <- parse_args(parser)
 
+source(paste0(opt$`gaudi-path`,"/cv_fused_lasso.R"))
 
 fits <- readRDS(opt$model)
 

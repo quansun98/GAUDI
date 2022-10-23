@@ -6,7 +6,6 @@ args = commandArgs(trailingOnly=TRUE)
 
 # args[1]: directory containing la_dosage.tsv.gz files 
 #all files under this directory with suffix ".la_dosage.tsv.gz" will be considered
-#the combination is separately for each chromosome
 
 la_files <- list.files(args[1], 
                        full.names = T, 
@@ -30,12 +29,16 @@ for(i in 1:length(la_files)){
 s_m_list <- vector("list", length = 22)
 for(i in 1:22){
   print(i)
-  m <- bind_rows(l[which(str_detect(la_files, pattern = sprintf("chr%s_", i)))]) %>%
-    column_to_rownames("SNP")  %>%
-    as.matrix()	
+  if(length(which(str_detect(la_files, pattern = sprintf("chr%s_", i)))) != 0){
+    m <- bind_rows(l[which(str_detect(la_files, pattern = sprintf("chr%s_", i)))]) %>%
+      column_to_rownames("SNP")  %>%
+      as.matrix()	
   
-  s_m_list[[i]] <- as(m, "dgCMatrix")
-  rm(m)
+    s_m_list[[i]] <- as(m, "dgCMatrix")
+    rm(m)
+  }else{
+    message(paste("No la dosage files for chr",i))
+  }
 }
 
 s_m <- do.call(rbind, s_m_list)
