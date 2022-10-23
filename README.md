@@ -143,26 +143,26 @@ The first three objects in `fit` are
 (1). `lambda`: the lambda vectors under the best-fit p-value threshold
 Note that all the information stored is everything under this best-fit p-value threshold.
 
-(2). `beta`: an `m \times k` matrix, where m is the number of predictors and `k` is the number of different \lambda values.
+(2). `beta`: an $m \times k$ matrix, where $m$ is the number of predictors and $k$ is the number of different \lambda values.
 Note that the predictors are not equal to variants.
 Each predictor has names `variantID_ancestry` to allow ancestry-specific effects.
 One variant may only have one ancestry effect presented in the final model.
 That is one unique feature of GAUDI and what distinguishes GAUDI with others.
 
-(3). `fit`: an `n \times k` matrix, where `n` is the number of individuals.
-It contains individual level fitted PRS values under each \lambda value.
+(3). `fit`: an $n \times k$ matrix, where $n$ is the number of individuals.
+It contains individual level fitted PRS values under each $\lambda$ value.
 
 2. `D`: the penalty matrix in sparse matrix format
 
 3. `snps`: predictors in the final model (not equivalent to variants)
 
-4. `best_gamma`: the \gamma values that achieves the best PRS performance (in terms of correlation with phenotypes)
+4. `best_gamma`: the $\gamma$ values that achieves the best PRS performance (in terms of correlation with phenotypes)
 
-5. `best_lambda`: the \lambda values that achieves the best PRS performance (in terms of correlation with phenotypes)
+5. `best_lambda`: the $\lambda$ values that achieves the best PRS performance (in terms of correlation with phenotypes)
 
 6. `cv_r2`: the cross-validation R2 under the best parameter
 
 7. `full_cv_r2`: all the cross-validation R2 under the parameter grids.
-Each row is a unique \lambda value, and each column is the \gamma value.
+Each row is a unique $\lambda$ value, and each column is the $\gamma$ value.
 
 
