@@ -10,6 +10,18 @@ See our manuscript for more details: [GAUDI preprint](<https://www.biorxiv.org/c
 
 This folder also contains codes used in the simulation studies. See `simulation` for more details.
 
+## Requirement
+
+The below R packages and version are required:
+
+* R >= v4.1.0
+* tidyverse >= v1.3.1
+* Matrix >= 1.4.0
+* optparse >= v1.7.1
+* data.table >= v1.14.2
+* genlasso >= v1.6.1
+* splitTools >= v0.3.2
+* caret >= v6.0.90
 
 ## Instructions on model training
 
