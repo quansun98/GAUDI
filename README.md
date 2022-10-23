@@ -66,11 +66,14 @@ The chromosome without any chunk will be ignored.
 
 		Rscript merge_la_dosage.R data
 
+A sparse matrix output with column names and row names will be generated.
+
 4. Run GAUDI for model training
 
 The main function to run GAUDI is `fit_cv_fused_lasso.R`. 
 It provides many customized options. Please see the script for details.
 It also calls `cv_fused_lasso.R` internally.
+An R object `OUTPUT.best_list.RDS` will be generated, which stores a list containing both fitted models and the best p-value threshold in the grid search process.
 An example code to train GAUDI model is provided below:
 
 
@@ -117,4 +120,40 @@ Example code to run:
 
 Note that this is just for code illustration purpose.
 Please do not fit PRS on the same samples that were used in model training.
+
+## More information on GAUDI model output
+
+As mentioned in step 4 in the model training part, an R object (in `list` type) will be generated.
+The main output is the `fit_model`, which contains the below objects.
+
+1. `fit`: this is an output format from the `gen_lasso` package.
+We here present some basic interpretations of the outputs.
+Please refer to the `genlasso` package for more details.
+The first three objects in `fit` are
+
+(1). `lambda`: the lambda vectors under the best-fit p-value threshold
+Note that all the information stored is everything under this best-fit p-value threshold.
+
+(2). `beta`: an `m \times k` matrix, where m is the number of predictors and `k` is the number of different \lambda values.
+Note that the predictors are not equal to variants.
+Each predictor has names `variantID_ancestry` to allow ancestry-specific effects.
+One variant may only have one ancestry effect presented in the final model.
+That is one unique feature of GAUDI and what distinguishes GAUDI with others.
+
+(3). `fit`: an `n \times k` matrix, where `n` is the number of individuals.
+It contains individual level fitted PRS values under each \lambda value.
+
+2. `D`: the penalty matrix in sparse matrix format
+
+3. `snps`: predictors in the final model (not equivalent to variants)
+
+4. `best_gamma`: the \gamma values that achieves the best PRS performance (in terms of correlation with phenotypes)
+
+5. `best_lambda`: the \lambda values that achieves the best PRS performance (in terms of correlation with phenotypes)
+
+6. `cv_r2`: the cross-validation R2 under the best parameter
+
+7. `full_cv_r2`: all the cross-validation R2 under the parameter grids.
+Each row is a unique \lambda value, and each column is the \gamma value.
+
 
