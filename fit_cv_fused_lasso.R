@@ -92,15 +92,15 @@ opt <- parse_args(parser)
 source(sprintf("%s/cv_fused_lasso.R", opt$`gaudi-path`))
 
 # opt <- list(
-#   gwas = "/proj/yunligrp/users/bryce/prs/admixed_prs/data/real_data_analysis/regenie_results/AA_adjusted_phenotypes_WHI_MEGA_AA_#_trainingSamples_fold1_regenie_hematocrit_adj.regenie",
+#   gwas = "./data/real_data_analysis/regenie_results/AA_adjusted_phenotypes_WHI_MEGA_AA_#_trainingSamples_fold1_regenie_hematocrit_adj.regenie",
 #   `gwas-col-p` = "LOG10P",
 #   `gwas-col-id` = "ID",
 #   `gwas-log-p` = TRUE,
-#   la = "/pine/scr/b/r/bryce38/gaudi/real_data_analysis/apply_prs_methods/gaudi/la_dosage_files/AA_WHI_MEGA_AA_fold1.allChr_hematocrit_adj_p0.05.la_dosage.mtx.gz",
-#   col = "/pine/scr/b/r/bryce38/gaudi/real_data_analysis/apply_prs_methods/gaudi/la_dosage_files/AA_WHI_MEGA_AA_fold1.allChr_hematocrit_adj_p0.05.la_dosage.colnames",
-#   row = "/pine/scr/b/r/bryce38/gaudi/real_data_analysis/apply_prs_methods/gaudi/la_dosage_files/AA_WHI_MEGA_AA_fold1.allChr_hematocrit_adj_p0.05.la_dosage.rownames",
-#   train = "/proj/yunligrp/users/bryce/prs/admixed_prs/data/real_data_analysis/phenotype_data/training_samples_lists/AA_training_samples_WHI_MEGA_AA_fold1.tsv",
-#   pheno = "/proj/yunligrp/users/bryce/prs/admixed_prs/data/real_data_analysis/phenotype_data/adjusted_phenos_by_cohort/AA_adjusted_phenotypes_WHI_MEGA_AA.tsv.gz",
+#   la = "AA_WHI_MEGA_AA_fold1.allChr_hematocrit_adj_p0.05.la_dosage.mtx.gz",
+#   col = "AA_WHI_MEGA_AA_fold1.allChr_hematocrit_adj_p0.05.la_dosage.colnames",
+#   row = "AA_WHI_MEGA_AA_fold1.allChr_hematocrit_adj_p0.05.la_dosage.rownames",
+#   train = "AA_training_samples_WHI_MEGA_AA_fold1.tsv",
+#   pheno = "AA_adjusted_phenotypes_WHI_MEGA_AA.tsv.gz",
 #   `pheno-name` = "hematocrit_adj",
 #   seed = 13,
 #   out = "hem_test",
