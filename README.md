@@ -90,7 +90,7 @@ An example code to train GAUDI model is provided below:
 			--pheno data/test.pheno --pheno-name pheno --pheno-iid FID \
 			--start-p-exp -1 --end-p-exp -5 \
 			--seed 2022 --sparsity FALSE \
-			--out data/test_p5_50_model
+			--out data/test_p1_5_model
 
 Note that: 
 
@@ -98,6 +98,8 @@ Note that:
 For example, `--gwas data/GWAS_chr#_sim.regenie`.
 
 (2) The `--start-p-exp` and `--end-p-exp` specify starting and ending p-value thresholds for grid search to maximize the PRS performance.
+The above codes specified -5 to -1 in the toy example. In our real data analysis, we used -50 to -5 genome-wide.
+The two parameters are tuning parameters people can manipulate by themselves (depending on the genetic architecture of traits). 
 
 (3) GAUDI will automatically remove highly correlated variants (LD > 0.95) in training samples.
 LD pruning or clumping could be performed before training models, but is not required.
