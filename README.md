@@ -172,7 +172,7 @@ Each row is a unique $\lambda$ value, and each column is the $\gamma$ value.
 Here are some pre-trained models that demonstrate obviously better performance in our experiments.
 We welcome others to test the models in other testing datasets and provide feedback.
 
-The pre-trained models could be download at this [FTP site](ftp://yunlianon:anon@rc-ns-ftp.its.unc.edu/GAUDI_models/)
+The pre-trained models could be download at this FTP site: ftp://yunlianon:anon@rc-ns-ftp.its.unc.edu/GAUDI_models/
 
 Please cite our [pre-print](<https://www.biorxiv.org/content/10.1101/2022.10.06.511219v1.abstract>) if you use our pre-trained models.
 
