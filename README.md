@@ -6,7 +6,7 @@ GAUDI is a novel polygenic risk score (PRS) method designed specifically for adm
 It takes the mosaic structure of the admixed genomes into consideration, leveraging local ancestry information to jointly estimate ancestry-shared effects and allowing ancestry-specific effects.
 GAUDI model is based on a modified fussed lasso framework, balancing between fusion and sparsity.
 The sparsity penalty performs variant selection, and the fusion penalty encourages similarity of the effect sizes of the same variant between two populations.
-See our manuscript for more details: [GAUDI preprint](<https://www.biorxiv.org/content/10.1101/2022.10.06.511219v1.abstract>)
+See our manuscript for more details: [GAUDI publication](<https://www.nature.com/articles/s41467-024-45135-z>)
 
 This folder also contains codes used in the simulation studies. See `simulation` for more details.
 
