@@ -174,7 +174,7 @@ We welcome others to test the models in other testing datasets and provide feedb
 
 The pre-trained models could be download at this FTP site: ftp://yunlianon:anon@rc-ns-ftp.its.unc.edu/GAUDI_models/
 
-Please cite our [pre-print](<https://www.biorxiv.org/content/10.1101/2022.10.06.511219v1.abstract>) if you use our pre-trained models.
+Please cite our [paper](<https://www.nature.com/articles/s41467-024-45135-z>) if you use our pre-trained models.
 
 ### Models trained in WHI African American samples
 We released models for white blood cell count (WBC) and C-reactive protein (CRP) that were trained in 5,387 WHI AA samples.
