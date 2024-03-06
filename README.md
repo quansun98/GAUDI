@@ -6,7 +6,7 @@ GAUDI is a novel polygenic risk score (PRS) method designed specifically for adm
 It takes the mosaic structure of the admixed genomes into consideration, leveraging local ancestry information to jointly estimate ancestry-shared effects and allowing ancestry-specific effects.
 GAUDI model is based on a modified fussed lasso framework, balancing between fusion and sparsity.
 The sparsity penalty performs variant selection, and the fusion penalty encourages similarity of the effect sizes of the same variant between two populations.
-See our manuscript for more details: [GAUDI preprint](<https://www.biorxiv.org/content/10.1101/2022.10.06.511219v1.abstract>)
+See our manuscript for more details: [GAUDI publication](<https://www.nature.com/articles/s41467-024-45135-z>)
 
 This folder also contains codes used in the simulation studies. See `simulation` for more details.
 
@@ -167,4 +167,22 @@ It contains individual level fitted PRS values under each $\lambda$ value.
 7. `full_cv_r2`: all the cross-validation R2 under the parameter grids.
 Each row is a unique $\lambda$ value, and each column is the $\gamma$ value.
 
+## Pre-trained models from GAUDI
 
+Here are some pre-trained models that demonstrate obviously better performance in our experiments.
+We welcome others to test the models in other testing datasets and provide feedback.
+
+The pre-trained models could be download at this FTP site: ftp://yunlianon:anon@rc-ns-ftp.its.unc.edu/GAUDI_models/
+
+Please cite our [pre-print](<https://www.biorxiv.org/content/10.1101/2022.10.06.511219v1.abstract>) if you use our pre-trained models.
+
+### Models trained in WHI African American samples
+We released models for white blood cell count (WBC) and C-reactive protein (CRP) that were trained in 5,387 WHI AA samples.
+Predicted values are the corresponding phenotypes after adjusting for covariates. 
+All variants in models have format `chr:pos:ref:alt` where the positions were based on hg38, since we used TOPMed freeze 8 imputed data.
+
+### Models trained in UKB individuals with primarily African ancestry samples
+We also released models for lipoprotein a, direct bilirubin, total bilirubin, apolipoprotein B and LDL direct, trained in 6,610 UKB participants that were classified as primarily African ancestry (detailed in our [previous publication](https://pubmed.ncbi.nlm.nih.gov/34376796/) ).
+Predicted values are the corresponding phenotypes after adjusting for covariates. 
+Variant IDs in models are directly extracted from UK Biobank bgen files (imputed with HRC + UK10K reference panel).
+The genome positions in these models are based on hg19.
