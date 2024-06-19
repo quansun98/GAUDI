@@ -329,8 +329,8 @@ best_p <- p_list[best_index]
 best_list <- list("fit_model" = best_fit, 
                   "best_p" = best_p)
 
-print(best_list$fit_model$cv_r2)
-best_list$best_p
+message(paste("best model CV R2:", print(best_list$fit_model$cv_r2)))
+message(paste("best model p-value threshold:", best_list$best_p))
 
 # #Output best_list as .Rds
 best_list %>% saveRDS(file = str_c(opt$out, ".best_list.RDS"))
