@@ -283,7 +283,7 @@ cols_no_suffix <- str_remove(colnames(la_matrix_train), "_AFR|_EUR")
 # rm(la_matrix)
 
 #for p in p_list
-set.seed(13)
+set.seed(opt$seed)
 # for(i in 1:length(p_list)){
 for(i in 1:length(p_list)){
   p <- p_list[i]
@@ -314,7 +314,7 @@ for(i in 1:length(p_list)){
 				gamma_stop = opt$`gamma-stop`,
 				gamma_by = opt$`gamma-by`)
   
-  if(!is.na(p_fits[[i]])){
+  if(!is.na(p_fits[[i]]$cv_r2)){
     r2_vec[i] <- p_fits[[i]]$cv_r2
   }else{
     r2_vec[i] <- NA
